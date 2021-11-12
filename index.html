@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <span>
+            <p>总数</p>
+            <input type="text" id="total">
+        </span>
+        <span>获取数量</span>
+        <input type="text" id="need">
+    </div>
+    <div id="btn">
+        生成随机数
+    </div>
+
+    <script>
+        const total = document.getElementById("total")
+        const need = document.getElementById("need")
+        const result = document.getElementById("result")
+        const btn = document.getElementById("btn")
+        function getRandomNums(total, nums) {
+            let res = []
+            while (nums > 0) {
+                let random = Math.ceil(Math.random() * total)
+                res.push(random)
+                nums -= 1
+            }
+            return res
+        }
+
+        btn.addEventListener('click', function () {
+            const body = document.getElementsByTagName('body')[0]
+            const result = document.createElement('div')
+            result.children = null
+            const all = +total.value
+            const nd = +need.value
+            let res = getRandomNums(all, nd)
+            const frag = document.createDocumentFragment();
+            for (let i of res) {
+                let p = document.createElement('p')
+                p.textContent = i
+                frag.appendChild(p)
+            }
+            result.appendChild(frag)
+            body.appendChild(result)
+        })
+    </script>
+</body>
+
+</html>
