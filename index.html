@@ -30,6 +30,9 @@
             let res = []
             while (nums > 0) {
                 let random = Math.ceil(Math.random() * total)
+                while (res.indexOf(random) > -1) {
+                    random = Math.ceil(Math.random() * total)
+                }
                 res.push(random)
                 nums -= 1
             }
